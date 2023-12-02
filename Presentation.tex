@@ -1,0 +1,657 @@
+\documentclass{beamer}
+%
+% Zhoose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{default}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{multicol}
+
+
+\title[Economics]{Strategy Proof Voting Mechanisms}
+\author{Aryan Arora}
+\institute{Carleton College}
+\date{10/31/2023}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline.
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\begin{frame}{A Proof Beyond Words}
+    \center \includegraphics[scale = 0.5]{Screenshot 2023-10-30 at 4.48.40 PM.png}
+\end{frame}
+
+\section{Motivation}
+
+\begin{frame}{Motivation}
+    \center \includegraphics[]{voting-rights-issue-image.jpg}
+\end{frame}
+
+\section{Setting Up The Problem}
+
+\begin{frame}{Setting Up the Problem: Voting Committees}
+\huge
+    $I_n$: Voting Committee
+    \vskip 1cm
+\large
+    $I_n$ = \{All Voting Eligible American\} \hfill (US Electorate)\\ \vskip 0.5cm
+    $I_2$ = \{Rafe, Rob\} \hfill (Aryan's Comps Committee)\\ \vskip 0.5cm
+    $I_{20}$ = \{Carleton Mathematics Professors\} \hfill (Math Department)\\
+
+    \vskip 1cm
+
+    All $i \in I_n$ have preferences $R_i$ over $S_m$
+    
+\end{frame}
+
+\begin{frame}{Setting Up the Problem: Alternatives}
+\huge
+    $S_m$: Set of Alternatives
+    \vskip 1cm
+\large
+    $S_3$ = \{Democrat, Republican, Independent\} \hfill (US President)\\ \vskip 0.5cm
+    $S_2$ = \{Pass, Fail\} \hfill (Aryan's Comps )\\ \vskip 0.5cm
+    $S_{20}$ = \{Halloween Candies\} \hfill (Halloween Candy)\\
+    
+\end{frame}
+
+\begin{frame}{Setting Up the Problem: Voting}
+
+\large Each voter casts a ballot, $\mathbf{B_i}$, which is a weak ordering of the alternatives: \\
+\center \huge $X > Y > Z$  \\
+\center $Y > X \ge Z$ \\
+\center $Z \ge Y > X $
+    
+\end{frame}
+
+\begin{frame}{Ballot Sets}
+    \LARGE $\pi_m$ = \{All possible ballots\} \\ 
+
+    \vskip 1cm
+    \large Assume $m = 3$ and $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \pi_3 =  \mathbf{\{} & (X > Y > Z), (X > Z > Y), (Y > X > Z), \\ 
+    &  (Y > Z > X), (Z > X > Y), (Z > Y > X), \\ 
+    & (X \ge Y > Z), ... ,(X \ge Y \ge Z), ... , (Z \ge Y \ge X) \mathbf{\}}
+\end{align*}
+    
+\end{frame}
+
+\begin{frame}{Ballot Sets}
+    \LARGE $\pi_m^n$ = \{All possible ballots for all voters\} 
+
+    \vskip 0.5cm
+
+    \large Assume $m = 3$, $n = 5$, and $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \pi_3^5 = \{ &\{B_1, B_2, B_3, B_4, B_5\}, \\
+    & \{B_1^*, B_2^*, B_3^*, B_4^*, B_5^*\}, \\
+    & \{B'_1, B'_2, B'_3, B'_4, B'_5\}, ...\}
+\end{align*}
+
+where $B_i \in \pi_m$
+\end{frame}
+
+
+\begin{frame}{Social Choice Function}
+    The \textbf{social choice function ($\mathbf{u^{nm}}$)} maps the collection of individual ballots to a \textbf{social choice}: a societal weak ordering of alternatives:
+
+    \vskip 0.5cm
+
+    \center \huge $u^{nm}: B \in \pi_m^n \rightarrow \pi_m$
+
+    \vskip 1cm
+
+\flushright \large $B = (B_1, ... , B_n)$
+\end{frame}
+
+\begin{frame}{Social Choice Function Example}
+
+\large \begin{equation*}
+  u^{5,3}(B) = u^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right) = (X > Y > Z) \in \pi_m
+\end{equation*}
+
+\vskip 0.5cm
+
+\large where $B = \{B_i\}, 1 < i < n, B_i \in \pi_3$
+\end{frame}
+
+\section{Arrow's Impossibility Theorem}
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, Pareto Optimality, and Independence of Irrelevant Alternatives, must be Dictatorial.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+$I_3 = \{i_1, i_2, i_3\}$ \hfill $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \huge B_1: X > Y > Z \\
+    \huge B_2: Y > Z > X \\
+    \huge B_3: Z > X > Y
+\end{align*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+$I_3 = \{i_1, i_2, i_3\}$ \hfill $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \huge B_1: \mathbf{X > Y} > Z \\
+    \huge B_2: Y > Z > X \\
+    \huge B_3: Z > \mathbf{X > Y}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+\center $X > Y$
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+$I_3 = \{i_1, i_2, i_3\}$ \hfill $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \huge i_1: X > \mathbf{Y > Z} \\
+    \huge i_2: \mathbf{Y > Z} > X \\
+    \huge i_3: Z > X > Y
+\end{align*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+\center $X > Y > Z$
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+\center $X > Y > Z$ $\implies$ $X > Z$
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem Example}
+
+\huge 
+
+$I_3 = \{i_1, i_2, i_3\}$ \hfill $S_3 = \{X, Y, Z\}$
+
+\begin{align*}
+    \huge i_1: X > Y > Z \\
+    \huge i_2: Y > \mathbf{Z > X} \\
+    \huge i_3: \mathbf{Z > X} > Y
+\end{align*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys \textbf{Rationality}, Pareto Optimality, and Independence of Irrelevant Alternatives, must be Dictatorial.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Rationality/Universality}
+    \begin{definition}[Rationality]
+       A social choice function should account for all individual preferences and provide the same ranking every time voter's preferences are presented the same way. 
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, \textbf{Pareto Optimality}, and Independence of Irrelevant Alternatives, must be Dictatorial.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Pareto Optimality}
+    \begin{definition}[Pareto Optimality]
+        If all \emph{voters} rank alternative $X$ before alternative $Y$, the social choice function should provide a ranking that has $X$ ranked before $Y$.
+    \end{definition}
+
+    \large \begin{equation*}
+  u^{5,3}(B) = u^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right) = (X > Y > Z) \in \pi_m
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, Pareto Optimality, and \textbf{Independence of Irrelevant Alternatives} must be Dictatorial.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Independence of Irrelevant Alternatives (IIA)}
+    \begin{definition}[Independence of Irrelevant Alternatives]
+        
+
+
+    \small \begin{equation*}
+  u^{5,3}(B) = u^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right): (X > Z)
+\end{equation*}
+
+\vskip 0.25cm
+
+\small \begin{equation*}
+  u^{5,3}(B') = u^{5,3}\left(
+    \begin{array}{cc}
+      B'_1: & \text{$X > Z > Y$}\\
+      B'_2: & \text{$X > Z > Y$}\\
+      B'_3: & \text{$X > Z > Y$}\\
+      B'_4: & \text{$X > Z > Y$}\\ 
+      B'_5: & \text{$X > Z > Y$}
+    \end{array} 
+    \right): (X > Z)
+\end{equation*}
+    \end{definition}
+\end{frame}
+
+
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, Pareto Optimality, and Independence of Irrelevant Alternatives must be Dictatorial.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Dictatorial}
+    \begin{definition}[Dictatorial]
+        A social choice function selects the ranking of one particular voter as the social choice.
+    \end{definition}
+
+
+\huge \begin{equation*}
+    \begin{array}{cc}
+      \huge i_1: X > Y > Z \\
+    \huge i_2: Y > Z > X \\
+    \huge i_3: Z > X > Y
+    \end{array} 
+    \rightarrow (X > Y > Z)
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Arrow's Impossibility Theorem}
+    \begin{theorem}
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, Pareto Optimality, and Independence of Irrelevant Alternatives must be \textbf{Dictatorial}.
+    \end{theorem}
+\end{frame}
+
+\section{Strategy Proof Voting Mechanisms}
+
+\begin{frame}
+\large {Strategy Proof Voting Mechanisms:}
+\end{frame}
+
+\begin{frame}{Voting Mechanism}
+    The \textbf{voting mechanism ($\mathbf{v^{nm}}$)} maps the collection of individual ballots to a \textbf{committee choice}, a single alternative $X \in S_m$:
+
+    \vskip 0.5cm
+
+    \center \huge $v^{nm}: B \in \pi_m^n \rightarrow X \in S_m$
+    \vskip 1cm
+
+\flushright \large $B = (B_1, ... , B_n)$
+\end{frame}
+
+\begin{frame}{Social Choice Function Example}
+    \large \begin{equation*}
+  u^{5,3}(B) = u^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right) = (X > Y > Z) \in \pi_m
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Voting Mechanism Example}
+
+\large \begin{equation*}
+  v^{5,3}(B) = v^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right) = (X) \in S_m
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Strategy Proof Voting Mechanism}
+    \begin{definition}[Sincere Strategy]
+        A voter, $i$, employs a sincere strategy when $B_i = R_i$
+    \end{definition}
+
+    \begin{definition}[Sophisticated Strategy]
+        A voter, $i$, employs a sophisticated strategy when $B_i \ne R_i$
+    \end{definition}
+
+    \begin{definition}[Strategy Proof Voting Mechanism]
+        A voting mechanism is strategy proof if there does not exist any ballot, $B \in \pi_m^n$ such that the outcome of the voting procedure is manipulable using a sophisticated strategy
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Strategy Proof Voting Mechanism}
+
+    \begin{definition}[Strategy Proof Voting Mechanism]
+        A voting mechanism is strategy proof if no voter has an incentive to cast a ballot different from their own preferences
+    \end{definition}
+
+    \vskip 0.5cm
+
+\begin{example}
+
+\begin{itemize}
+    \item 49\% of Americans identify as independents\footnote{https://www.axios.com/2023/04/17/poll-americans-independent-republican-democrat}
+    \item In the 2020 US Presidential Election independent candidates gathered 1.9\% of votes
+\end{itemize}
+\end{example}
+\end{frame}
+
+\begin{frame}{Strategy Proof Voting Mechanism}
+   \center  $R_i = (Independent > Democrat > Republican)$
+
+    \vskip 1cm
+
+    Sincere: $B_i = (Independent > Democrat > Republican)$
+
+    \vskip 1cm
+
+    Sophisticated: $B_i = (Democrat > Independent > Republican)$
+    
+\end{frame}
+
+\section{Gibbard-Satterthwaite Theorem}
+
+\begin{frame}{Gibbard-Satterthwaite Theorem}
+
+\begin{theorem}[Gibbard-Satterthwaite Theorem]
+    Consider a voting procedure, $v^{nm}$ with $n \ge 2$ and $m \ge 3$. The voting procedure is strategy proof if and only if it is Dictatorial. 
+\end{theorem}
+    
+\end{frame}
+
+\begin{frame}{Dictatorial $\implies$ Strategy Proof}
+
+Assume voting mechanism $v^{nm}$ is a Dictatorial voting mechanism and voter $k \in I_n$ is the dictator.
+
+\begin{itemize}
+    \item voter $k$ is not incentivized to cast a sophisticated ballot
+    \item For all $i \in \{1, ... , k-1, k+1, ... , n \}$ voter $i$ is not incentivized to cast a sophisticated ballot.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Key Theorems}
+    \begin{theorem}[Arrow's Impossibility]
+    For $n > 2$ and $m > 3$ any social choice function that obeys Rationality, Pareto Optimality, and Independence of Irrelevant Alternatives must be Dictatorial.
+    \end{theorem}
+
+
+\begin{theorem}[Gibbard-Satterthwaite Theorem]
+    Consider a voting procedure, $v^{nm}$ with $n \ge 2$ and $m \ge 3$. The voting procedure is strategy proof if and only if it is Dictatorial. 
+\end{theorem}
+
+\begin{theorem}[Gibbard-Satterthwaite Correspondence Theorem]
+    The strategy-proofness condition for voting procedures in the Gibbard-Satterthwaite Theorem  correspond precisely to Arrow’s conditions for a social choice function. 
+\end{theorem}
+\end{frame}
+
+\section{Correspondence Theorem}
+
+\begin{frame}{Correspondence Theorem}
+    Strategy:
+
+    \begin{itemize}
+        \item We can produce a $v^{nm}$ from a $u^{nm}$
+        \item We can produce a $u^{nm}$ from a $v^{nm}$
+        \item Each $v^{nm}$ that produces a $u^{nm}$ (and vice versa) is unique
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+
+A strategy proof voting procedure can be constructed from For $n > 2$ and $m > 3$ any social choice function.
+
+    \large \begin{equation*}
+  u^{5,3}(B) = u^{5,3}\left(
+    \begin{array}{cc}
+      B_1: & \text{$X > Y > Z$}\\
+      B_2: & \text{$X > Y > Z$}\\
+      B_3: & \text{$X > Y > Z$}\\
+      B_4: & \text{$X > Y > Z$}\\ 
+      B_5: & \text{$X > Y > Z$}
+    \end{array} 
+    \right) = (X > Y > Z) \in \pi_m
+\end{equation*}
+
+\vskip 1cm
+
+\center $\mathbf{v^{nm} = max(u^{nm}) = X \in S_m}$
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    A social choice function can be constructed from any strategy proof voting procedure
+
+    \vskip 0.5cm
+
+    \begin{enumerate}
+        \item Pick an arbitrary strong ordering of the alternatives
+        \item Define $\lambda_{X,Y}$ for $X,Y \in S_m$ where $X \ne Y$ as follows:
+    \end{enumerate}
+
+    \vskip 1cm
+
+        \Large \center $B_i = (\alpha > \beta > X > \gamma > \phi > Y)$ \\
+        \vskip 0.25cm
+        $\lambda_{X,Y}(B_i) = (X > Y > \alpha > \beta > \gamma > \phi )$
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    \begin{enumerate}
+    \setcounter{enumi}{2}
+        \item For each ballot set $B = (B_1, ... , B_n)$ construct a binary relation, $P$
+        \begin{enumerate}
+            \item For all $X,Y \in S_m$ where $X \ne Y$, $X > Y$ in $P$ if and only if $X = v^{nm}(\lambda_{X,Y}(B_1), ..., \lambda_{X,Y}(B_n))$
+        \end{enumerate}
+    \end{enumerate}
+
+\vskip 0.15cm
+
+\begin{example}
+\large \begin{multicols}{2} % two columns
+        $B_1 = (X > Y > Z)$ \\
+        $B_2 = (Y > X > Z)$ \\
+        $B_3 = (Z > X > Y)$
+
+        $\lambda_{X,Y}(B_1) = (X > Y > Z)$ \\
+        $\lambda_{X,Y}(B_2) = (Y > X > Z)$ \\
+        $\lambda_{X,Y}(B_3) = (X > Y > Z)$ \\
+    \end{multicols}
+\end{example}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+\Large \center $v^{nm}(\lambda_{X,Y}(B_1), \lambda_{X,Y}(B_2), \lambda_{X,Y}(B_1)) = X$ \\
+\center $v^{nm}(\lambda_{Y,Z}(B_1), \lambda_{Y,Z}(B_2), \lambda_{Y,Z}(B_1)) = Y$
+\center $v^{nm}(\lambda_{X,Z}(B_1), \lambda_{X,Z}(B_2), \lambda_{X,Z}(B_1)) = X$
+
+\vskip 1cm
+
+$\mathbf{P = (X > Y > Z)}$
+
+\vskip 1cm
+
+\large \begin{enumerate}
+\setcounter{enumi}{3}
+    \item Let $\mu$ be a function that associates $P$ with the appropriate ballot set
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item if $v^{nm}$ is strategy proof, $P$ is a strong order
+    \item $\mu$ is a strict social choice function
+    \item $\mu$ obeys Pareto Optimality and Independence of Irrelevant Alternatives
+    \begin{enumerate}
+        \item If $v^{nm}$ is strategy proof, it obeys Pareto Optimality and Independence of Irrelevant Alternatives
+    \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item if $v^{nm}$ is strategy proof, $P$ is a strong order
+    \item $\mu$ is a strict social choice function
+    \item $\mu$ obeys Pareto Optimality and Independence of Irrelevant Alternatives
+    \begin{enumerate}
+        \item \textbf{If $v^{nm}$ is strategy proof, it obeys Pareto Optimality and Independence of Irrelevant Alternatives}
+    \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    $v^{nm}$ is strategy proof $\implies$ $v^{nm}$ is Pareto Optimal.
+
+\noindent\rule{9cm}{0.4pt}
+
+\vskip 0.25cm
+
+    Assume strategy proof and not Pareto Optimal
+
+\vskip 0.25cm
+
+    There exists some $C \in \pi_m^n$ such that $X > Y$ for all $C_i \in C$ but $v^{nm}(C) = Y$
+
+\vskip 0.25cm
+
+    Because $X$ is in the range of $v^{nm}$ there must exist a ballot set $D$ such that $v^{nm}(D) = X$ 
+
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    \vskip 0.25 cm
+
+\Large    There exists some voter, $k$ such that:
+
+    \vskip 0.25cm
+
+    \center $v^{nm}(C_1, ... , C_{k-1}, C_k, ... , C_n) = Y$ \\ 
+    $v^{nm}(D_1, ... , D_{k-1}, C_k, ... , C_n) = Y$ \\
+    $v^{nm}(D_1, ... , D_{k-1}, D_k, ... , C_n) = X$
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    \begin{example}
+
+    \emph{$v^{nm}$ chooses the second best alternative}
+    \begin{multicols}{2} % two columns
+        $C_1 = (X > Y > Z)$ \\
+        $C_2 = (X > Y > Z)$ \\
+        $C_n = (X > Y > Z)$
+
+        $D_1 = (Y > X > Z)$ \\
+        $D_2 = (Y > X > Z)$ \\
+        $D_n = (Y > X > Z)$
+    \end{multicols}
+
+\vskip 1cm
+
+    \textbf{Voter k:}
+
+    \begin{multicols}{2}
+    Sincere: $(X > Y > Z)$
+    \textbf{Outcome: $Y$}
+
+    Sophisticated: $(Y > X > Z)$
+    \textbf{Outcome: $X$}
+    \end{multicols}
+    \end{example}
+\end{frame}
+
+\begin{frame}{Correspondence Theorem}
+    \Huge \center \textbf{Contradiction!}
+\end{frame}
+
+\section{Vickrey–Clarke–Groves Mechanism}
+
+\begin{frame}{A Glimmer of Hope}
+\Large Vickrey Auctions:
+
+\vskip 0.5cm
+
+\Large
+\begin{itemize}
+    \item Sealed Bid Auction
+    \item Winner is the second highest big
+\end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}{Thank you}
+    \Large Thank you to everyone in the Math/Stats department!
+\end{frame}
+
+\end{document}
